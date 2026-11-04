@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación de Graduación</title>
+    <style>
+      :root {
+        --bg-1: #fffaf2;
+        --bg-2: #f5e7ff;
+        --card: rgba(255, 255, 255, 0.7);
+        --gold: #d4af37;
+        --gold-dark: #9f7c25;
+        --purple: #6d4bb0;
+        --purple-dark: #3e2d68;
+        --rose: #f8d7e3;
+        --text: #2e2240;
+        --muted: #5d4d73;
+        --shadow: rgba(87, 63, 120, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        color: var(--text);
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        padding: 32px 18px;
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.45;
+        z-index: 0;
+      }
+
+      body::before {
+        background: rgba(212, 175, 55, 0.22);
+        top: -120px;
+        left: -80px;
+      }
+
+      body::after {
+        background: rgba(166, 124, 255, 0.18);
+        right: -60px;
+        bottom: -90px;
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 760px);
+        background: var(--card);
+        border: 1px solid rgba(109, 75, 176, 0.15);
+        border-radius: 32px;
+        box-shadow: 0 28px 70px var(--shadow);
+        backdrop-filter: blur(8px);
+        overflow: hidden;
+      }
+
+      .card::before,
+      .card::after {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+      }
+
+      .card::before {
+        top: -70px;
+        left: -80px;
+      }
+
+      .card::after {
+        right: -70px;
+        bottom: -80px;
+      }
+
+      .content {
+        position: relative;
+        padding: 42px 36px 32px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 14px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: 999px;
+        background: rgba(212, 175, 55, 0.12);
+        color: var(--gold-dark);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+      }
+
+      .badge::before {
+        content: "✦";
+        font-size: 0.9rem;
+      }
+
+      .top-mark {
+        font-size: 1.8rem;
+        color: var(--gold);
+        opacity: 0.9;
+      }
+
+      .title {
+        text-align: center;
+        margin: 8px 0 4px;
+        font-size: clamp(2.5rem, 5vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: 0.04em;
+        font-weight: 800;
+        color: var(--purple-dark);
+      }
+
+      .title span {
+        display: block;
+        color: var(--gold-dark);
+        font-size: clamp(1.1rem, 2vw, 1.7rem);
+        letter-spacing: 0.3em;
+        margin-top: 10px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        text-align: center;
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .name {
+        text-align: center;
+        margin: 18px auto 8px;
+        font-size: clamp(1.8rem, 3vw, 2.9rem);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--purple-dark);
+      }
+
+      .divider {
+        width: 140px;
+        height: 2px;
+        margin: 18px auto 26px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      }
+
+      .text {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .data-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin: 30px auto 26px;
+        max-width: 620px;
+      }
+
+      .item {
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(109, 75, 176, 0.12);
+        border-radius: 22px;
+        padding: 18px 14px;
+        text-align: center;
+        box-shadow: 0 16px 35px rgba(76, 56, 112, 0.06);
+      }
+
+      .item span {
+        display: block;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold-dark);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .item strong {
+        color: var(--purple-dark);
+        font-size: 1.05rem;
+      }
+
+      .cta {
+        display: block;
+        width: fit-content;
+        margin: 12px auto 0;
+        border: none;
+        background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+        color: white;
+        border-radius: 999px;
+        padding: 15px 28px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 18px 28px rgba(87, 63, 120, 0.25);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 30px rgba(87, 63, 120, 0.3);
+      }
+
+      .footer {
+        margin-top: 26px;
+        text-align: center;
+        color: var(--gold-dark);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.76rem;
+      }
+
+      @media (max-width: 640px) {
+        .content {
+          padding: 32px 20px 24px;
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .data-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .title {
+          letter-spacing: 0.02em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="content">
+        <div class="header">
+          <div class="badge">Invitación</div>
+          <div class="top-mark">✧</div>
+        </div>
+
+        <h1 class="title">Graduación <span>2026</span></h1>
+        <p class="subtitle">Celebración especial</p>
+
+        <div class="name">Ana Sofía</div>
+        <div class="divider"></div>
+
+        <p class="text">
+          Te invitamos a compartir este momento tan especial lleno de alegría,
+          orgullo y nuevas metas. Tu presencia hará que esta noche sea aún más
+          memorable.
+        </p>
+
+        <div class="data-grid">
+          <div class="item">
+            <span>Fecha</span>
+            <strong>14 de junio</strong>
+          </div>
+          <div class="item">
+            <span>Hora</span>
+            <strong>7:00 PM</strong>
+          </div>
+          <div class="item">
+            <span>Lugar</span>
+            <strong>Gran Salón</strong>
+          </div>
+        </div>
+
+        <button class="cta" type="button">Confirmar asistencia</button>
+
+        <div class="footer">Con mucho cariño • Familia y amigos</div>
+      </div>
+    </main>
+  </body>
+</html>
