@@ -219,12 +219,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+La+Molienda+de+Tavo+Variante+Cota+Cundinamarca" target="_blank" rel="noopener"
                        class="border border-amber-400/70 text-amber-300 font-bold py-3 px-6 rounded-xl text-xs sm:text-sm tracking-wider uppercase transition hover:bg-amber-400/10 flex items-center justify-center gap-2">
                         <span>🗺️</span> Ver ubicación
-                    </a>
-                    <a id="rsvp-btn" href="#" target="_blank" rel="noopener"
-                       class="gold-bg text-slate-950 font-bold py-3 px-6 rounded-xl text-xs sm:text-sm tracking-wider uppercase transition hover:opacity-90 flex items-center justify-center gap-2 shadow-lg">
-                        <span>💬</span> Confirmar asistencia
-                    </a>
-                </div>
+                    </a>                </div>
 
                 <p class="mt-7 text-xs tracking-[.3em] uppercase text-amber-400/80 font-cinzel">¡Te esperamos! 🥂</p>
             </div>
@@ -239,17 +234,13 @@
             const params = new URLSearchParams(window.location.search);
             const guest = params.get('para');
             const nameEl = document.getElementById('guest-name');
-            const rsvp = document.getElementById('rsvp-btn');
 
             let text = "¡Nos encantaría contar con tu presencia!";
-            let msg = "¡Hola! Confirmo mi asistencia al almuerzo de graduación de Sergio (Checho) el domingo 6 de diciembre a la 1:30 p. m.";
 
             if (guest) {
                 text = `Querida/o ${guest}, ¡nos encantaría contar con tu presencia!`;
-                msg = `¡Hola! Soy ${guest} y confirmo mi asistencia al almuerzo de graduación de Sergio (Checho) el domingo 6 de diciembre a la 1:30 p. m.`;
             }
             nameEl.textContent = text;
-            rsvp.href = `https://wa.me/573107562802?text=${encodeURIComponent(msg)}`;
         });
 
         function openEnvelope() {
